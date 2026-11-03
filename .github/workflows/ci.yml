@@ -1,0 +1,75 @@
+# Integración continua: compila y ejecuta las pruebas JUnit 5 en cada push y pull request.
+# Las pruebas de PostgreSQL usan el servicio de base de datos definido abajo, de modo que
+# las 62 ejecuciones (incluidas integración y estrés) corren también en GitHub.
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  pruebas:
+    name: Compilar y probar (Java 24)
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: bembos_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Java 24
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '24'
+          cache: maven
+
+      - name: Crear el esquema bembos y cargar el catálogo
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h localhost -U postgres -d bembos_db -v ON_ERROR_STOP=1 -f src/main/resources/db/01_schema.sql
+          psql -h localhost -U postgres -d bembos_db -v ON_ERROR_STOP=1 -f src/main/resources/db/02_datos.sql
+
+      - name: Compilar y ejecutar pruebas
+        run: mvn -B verify
+
+      - name: Publicar reportes de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-pruebas
+          path: |
+            target/surefire-reports/
+            target/metricas/
+
+  web:
+    name: Verificar build web (Java 17)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '24'
+          cache: maven
+      - name: Generar web/bembos-web.jar
+        run: mvn -B -Pweb package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bembos-web-jar
+          path: web/bembos-web.jar

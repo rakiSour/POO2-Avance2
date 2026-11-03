@@ -1,0 +1,32 @@
+# Publica una versión descargable de la aplicación de escritorio al crear una etiqueta v*,
+# por ejemplo:  git tag v2.0 && git push origin v2.0
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '24'
+          cache: maven
+      - name: Empaquetar JAR de escritorio (sin pruebas de base de datos)
+        run: mvn -B -DskipTests package
+      - name: Crear release en GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            target/POO2-Avance2-1.0-SNAPSHOT.jar
+            web/bembos-web.jar
+            src/main/resources/db/01_schema.sql
+            src/main/resources/db/02_datos.sql
+          generate_release_notes: true
