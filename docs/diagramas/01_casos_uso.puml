@@ -1,0 +1,39 @@
+@startuml
+!include 00_estilo.iuml
+title Diagrama de casos de uso - Sistema de Gestión de Pedidos Bembos
+left to right direction
+actor "Cajero / Kiosco" as Cajero
+actor "Cocinero (KDS)" as Cocina
+actor "Jefe de tienda" as Jefe
+actor "Sistema de facturación\nheredado" as Legacy <<sistema>>
+actor "PostgreSQL" as BD <<sistema>>
+rectangle "Sistema MVC + Builder" {
+  usecase "CU01 Consultar catálogo" as CU01
+  usecase "CU02 Personalizar producto\n(quitar / agregar / tamaño / nota)" as CU02
+  usecase "CU03 Agregar combo\n(Director)" as CU03
+  usecase "CU04 Registrar pedido" as CU04
+  usecase "CU05 Cobrar pedido" as CU05
+  usecase "CU06 Emitir comprobante\n(boleta / factura)" as CU06
+  usecase "CU07 Visualizar comandas" as CU07
+  usecase "CU08 Avanzar estado del pedido" as CU08
+  usecase "CU09 Anular pedido" as CU09
+  usecase "CU10 Consultar indicadores del día" as CU10
+  usecase "Validar reglas de\npersonalización" as VAL
+}
+Cajero --> CU01
+Cajero --> CU02
+Cajero --> CU03
+Cajero --> CU04
+Cajero --> CU05
+CU02 ..> VAL : <<include>>
+CU04 ..> VAL : <<include>>
+CU05 ..> CU06 : <<include>>
+CU06 --> Legacy
+Cocina --> CU07
+Cocina --> CU08
+Cocina --> CU09
+Jefe --> CU10
+Jefe --> CU09
+CU04 --> BD
+CU08 --> BD
+@enduml

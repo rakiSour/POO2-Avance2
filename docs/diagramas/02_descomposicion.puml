@@ -1,0 +1,41 @@
+@startwbs
+!include 00_estilo.iuml
+title Análisis y descomposición en subcomponentes
+* Sistema de Gestión de Pedidos Bembos
+** Vista (Swing)
+*** MainView
+*** PedidoPanel (catálogo y carrito)
+*** PersonalizacionDialog
+*** PagoDialog
+*** CocinaPanel (KDS)
+*** ReportePanel
+** Controlador
+*** PedidoController
+*** PagoController
+*** CocinaController
+*** ReporteController
+** Modelo
+*** Entidades del dominio
+**** Producto / Hamburguesa / Bebida\nComplemento / Postre
+**** Ingrediente, ItemPedido, Pedido
+**** EstadoPedido (máquina de estados)
+*** Construcción (Builder)
+**** ItemPedidoBuilder
+**** PedidoBuilder
+**** PedidoDirector (combos)
+*** Fábricas (Factory)
+**** ProductoFactory
+**** PasarelaPagoFactory
+**** DAOFactory (Abstract Factory)
+*** Servicios
+**** PedidoFacade (Facade)
+**** Pasarelas de pago
+**** FacturacionLegacyAdapter (Adapter)
+*** Persistencia (DAO)
+**** JDBC: Producto, Pedido, Pago
+**** Memoria (pruebas / demo)
+** Infraestructura
+*** ConexionBD (Singleton + pool)
+*** PostgreSQL - esquema bembos
+*** Pruebas JUnit 5
+@endwbs

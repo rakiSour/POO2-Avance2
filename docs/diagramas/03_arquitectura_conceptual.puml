@@ -1,0 +1,30 @@
+@startuml
+!include 00_estilo.iuml
+title Arquitectura conceptual (capas MVC y patrones)
+skinparam rectangle {
+  RoundCorner 12
+}
+rectangle "<b>VISTA</b> (Swing)\nMainView · PedidoPanel · PersonalizacionDialog\nPagoDialog · CocinaPanel · ReportePanel" as V #DCE8FA
+rectangle "<b>CONTROLADOR</b>\nPedidoController · PagoController\nCocinaController · ReporteController" as C #FFF1D6
+package "<b>MODELO</b>" as M #F1F8E9 {
+  rectangle "<b>Facade</b>\nPedidoFacade" as F #FFFFFF
+  rectangle "<b>Builder</b>\nItemPedidoBuilder · PedidoBuilder\nPedidoDirector" as B #FFFFFF
+  rectangle "<b>Entidades</b>\nProducto · Hamburguesa · Ingrediente\nItemPedido · Pedido · EstadoPedido" as E #FFFFFF
+  rectangle "<b>Factory</b>\nProductoFactory · PasarelaPagoFactory" as FA #FFFFFF
+  rectangle "<b>Adapter</b>\nFacturacionLegacyAdapter\n→ SistemaFacturacionLegacy" as AD #FFFFFF
+  rectangle "<b>DAO + Abstract Factory</b>\nDAOFactory · ProductoDAO\nPedidoDAO · PagoDAO" as D #FFFFFF
+}
+rectangle "<b>Singleton</b>\nConexionBD (pool JDBC)" as S #F3E5F5
+database "PostgreSQL\nesquema bembos" as DB #EEEEEE
+V -down-> C : eventos del usuario
+C -up-> V : actualiza tablas,\nmensajes y totales
+C -down-> B : construye pedido
+C -down-> F : registrar / cobrar /\navanzar estado
+B -down-> E : crea objetos\nválidos e inmutables
+F --> FA
+F --> AD
+F --> D
+D --> FA : mapea filas\na subclases
+D -down-> S
+S -down-> DB : JDBC
+@enduml

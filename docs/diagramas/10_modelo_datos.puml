@@ -1,0 +1,114 @@
+@startuml
+!include 00_estilo.iuml
+title Modelo físico de datos - esquema bembos (PostgreSQL)
+hide circle
+skinparam linetype ortho
+entity producto {
+  * id_producto : serial <<PK>>
+  --
+  * codigo : varchar(10) <<UQ>>
+  * nombre : varchar(80)
+  descripcion : varchar(200)
+  * tipo : varchar(15) <<CHECK>>
+  * precio_base : numeric(10,2)
+  * activo : boolean
+}
+entity ingrediente {
+  * id_ingrediente : serial <<PK>>
+  --
+  * nombre : varchar(60) <<UQ>>
+  * precio_extra : numeric(10,2)
+  * es_adicional : boolean
+  * disponible : boolean
+}
+entity receta {
+  * id_producto : int <<PK,FK>>
+  * id_ingrediente : int <<PK,FK>>
+  --
+  * obligatorio : boolean
+  * orden : smallint
+}
+entity cliente {
+  * id_cliente : serial <<PK>>
+  --
+  * documento : varchar(11) <<UQ>>
+  * nombre : varchar(120)
+}
+entity pedido {
+  * id_pedido : serial <<PK>>
+  --
+  codigo : varchar(12) <<GENERATED, UQ>>
+  id_cliente : int <<FK>>
+  * nombre_cliente : varchar(120)
+  * canal : varchar(10)
+  * estado : varchar(15)
+  observacion : varchar(200)
+  * base_imponible : numeric(10,2)
+  * igv : numeric(10,2)
+  * total : numeric(10,2)
+  * fecha_registro : timestamp
+  * fecha_actualizacion : timestamp
+}
+entity detalle_pedido {
+  * id_detalle : serial <<PK>>
+  --
+  * id_pedido : int <<FK>>
+  * id_producto : int <<FK>>
+  * cantidad : smallint
+  * tamano : varchar(10)
+  * precio_unitario : numeric(10,2)
+  * descuento : numeric(10,2)
+  * subtotal : numeric(10,2)
+  combo : varchar(40)
+  nota : varchar(120)
+  * descripcion : varchar(400)
+}
+entity detalle_personalizacion {
+  * id_personalizacion : serial <<PK>>
+  --
+  * id_detalle : int <<FK>>
+  * id_ingrediente : int <<FK>>
+  * accion : varchar(7) <<QUITAR/AGREGAR>>
+  * precio : numeric(10,2)
+}
+entity historial_estado {
+  * id_historial : serial <<PK>>
+  --
+  * id_pedido : int <<FK>>
+  * estado : varchar(15)
+  * fecha : timestamp
+}
+entity pago {
+  * id_pago : serial <<PK>>
+  --
+  * id_pedido : int <<FK,UQ>>
+  * metodo : varchar(20)
+  * monto : numeric(10,2)
+  * monto_recibido : numeric(10,2)
+  * vuelto : numeric(10,2)
+  * referencia : varchar(40)
+  * fecha : timestamp
+}
+entity comprobante {
+  * id_comprobante : serial <<PK>>
+  --
+  * id_pedido : int <<FK,UQ>>
+  * tipo : varchar(7)
+  * serie : char(4)
+  * numero : int
+  documento_cliente : varchar(11)
+  razon_social : varchar(120)
+  * total : numeric(10,2)
+  * fecha_emision : timestamp
+}
+producto ||--o{ receta
+ingrediente ||--o{ receta
+cliente |o--o{ pedido
+pedido ||--|{ detalle_pedido
+producto ||--o{ detalle_pedido
+detalle_pedido ||--o{ detalle_personalizacion
+ingrediente ||--o{ detalle_personalizacion
+pedido ||--|{ historial_estado
+pedido ||--o| pago
+pedido ||--o| comprobante
+@enduml

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Vintage" tests="0" skipped="0" failures="0" errors="0" time="0.001" hostname="vm" timestamp="2026-11-03T15:05:31">
+<properties>
+<property name="file.encoding" value="UTF-8"/>
+<property name="file.separator" value="/"/>
+<property name="http.nonProxyHosts" value="localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local"/>
+<property name="https.proxyHost" value="127.0.0.1"/>
+<property name="https.proxyPort" value="40241"/>
+<property name="java.awt.headless" value="true"/>
+<property name="java.class.path" value="/usr/share/java/junit-platform-console-standalone.jar"/>
+<property name="java.class.version" value="69.0"/>
+<property name="java.home" value="/usr/lib/jvm/java-25-openjdk-amd64"/>
+<property name="java.io.tmpdir" value="/tmp"/>
+<property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+<property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+<property name="java.runtime.version" value="25.0.4.1+1-1-24.04.4-Ubuntu"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="25"/>
+<property name="java.vendor" value="Ubuntu"/>
+<property name="java.vendor.url" value="https://ubuntu.com/"/>
+<property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-25"/>
+<property name="java.version" value="25.0.4.1"/>
+<property name="java.version.date" value="2026-08-18"/>
+<property name="java.vm.compressedOopsMode" value="32-bit"/>
+<property name="java.vm.info" value="mixed mode, sharing"/>
+<property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="25"/>
+<property name="java.vm.vendor" value="Ubuntu"/>
+<property name="java.vm.version" value="25.0.4.1+1-1-24.04.4-Ubuntu"/>
+<property name="javax.net.ssl.trustStore" value="/etc/ssl/certs/java/cacerts"/>
+<property name="javax.net.ssl.trustStoreType" value="JKS"/>
+<property name="jdk.debug" value="release"/>
+<property name="jdk.http.auth.proxying.disabledSchemes" value=""/>
+<property name="jdk.http.auth.tunneling.disabledSchemes" value=""/>
+<property name="line.separator" value="
+"/>
+<property name="native.encoding" value="ANSI_X3.4-1968"/>
+<property name="os.arch" value="amd64"/>
+<property name="os.name" value="Linux"/>
+<property name="os.version" value="6.18.44-fc-v230"/>
+<property name="path.separator" value=":"/>
+<property name="stderr.encoding" value="ANSI_X3.4-1968"/>
+<property name="stdin.encoding" value="ANSI_X3.4-1968"/>
+<property name="stdout.encoding" value="UTF-8"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="/usr/lib/jvm/java-25-openjdk-amd64/lib"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+<property name="sun.java.command" value="/usr/share/java/junit-platform-console-standalone.jar execute -cp /tmp/out/main:/tmp/out/test:/usr/share/java/postgresql.jar --scan-classpath --details=tree --disable-banner --disable-ansi-colors --reports-dir=/tmp/junit-reports-1"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="ANSI_X3.4-1968"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="user.country" value="US"/>
+<property name="user.dir" value="/home/claude/proj/POO2-Avance2"/>
+<property name="user.home" value="/root"/>
+<property name="user.language" value="en"/>
+<property name="user.name" value="root"/>
+<property name="user.timezone" value="America/Lima"/>
+</properties>
+<system-out><![CDATA[
+unique-id: [engine:junit-vintage]
+display-name: JUnit Vintage
+]]></system-out>
+</testsuite>

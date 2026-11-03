@@ -1,0 +1,10 @@
+# 2026-11-03T15:05:30.084180992
+solicitudes=1000
+semilla=2026
+invalidas_segun_oraculo=309
+tasa_error_sin_builder_pct=30.9
+tasa_error_con_builder_pct=0.0
+rechazos_correctos=309
+rechazos_indebidos=0
+pedidos_registrados=691
+tiempo_promedio_construccion_registro_us=31.3

@@ -1,0 +1,33 @@
+@startuml
+!include 00_estilo.iuml
+title Diagrama de secuencia (nivel de diseño): atención en cocina (KDS)
+autonumber
+actor Cocinero
+participant ":CocinaPanel" as V <<Vista>>
+participant ":CocinaController" as C <<Controlador>>
+participant ":PedidoFacade" as F <<Facade>>
+participant ":PedidoDaoJdbc" as D <<DAO>>
+database PostgreSQL as DB
+loop cada 5 segundos (javax.swing.Timer)
+  V -> C : comandasPendientes()
+  C -> F : pedidosEnCocina()
+  F -> D : listarPorEstados({PAGADO, EN_PREPARACION, LISTO})
+  D -> DB : SELECT ... FROM v_comandas_cocina
+  DB --> D : filas
+  D --> F : List<ResumenPedido>
+  F --> C : comandas
+  C --> V : comandas
+  V -> V : pinta filas por color de estado
+end
+Cocinero -> V : selecciona comanda y "Avanzar estado"
+V -> C : avanzar(idPedido)
+C -> F : avanzarEstado(idPedido)
+F -> D : obtenerEstado(idPedido)
+D --> F : PAGADO
+F -> F : siguiente = PAGADO.siguienteEnFlujo()
+F -> D : actualizarEstado(id, EN_PREPARACION)
+D -> DB : UPDATE pedido + INSERT historial_estado
+F --> C : EN_PREPARACION
+C --> V : estado nuevo
+V -> V : refrescar()
+@enduml

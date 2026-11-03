@@ -1,0 +1,46 @@
+@startuml
+!include 00_estilo.iuml
+title Diagrama de flujo: toma y cobro del pedido
+start
+:Cajero inicia un pedido nuevo;
+repeat
+  if (¿Combo o producto?) then (Combo)
+    :Elegir combo y tamaño;
+    :PedidoDirector construye las líneas\ny aplica el descuento;
+  else (Producto)
+    :Seleccionar producto del catálogo;
+    :Definir cantidad, tamaño, ingredientes a quitar,\nadicionales y nota;
+    :ItemPedidoBuilder.build() valida la personalización;
+    if (¿Personalización válida?) then (no)
+      :Mostrar errores al cajero;
+      :Corregir la personalización;
+    else (sí)
+      :Agregar ítem al pedido en curso;
+    endif
+  endif
+repeat while (¿Agregar otro producto?) is (sí)
+-> no;
+:Registrar datos del cliente y canal;
+:PedidoBuilder.build() valida el pedido;
+if (¿Pedido válido?) then (no)
+  :Mostrar errores (vacío, delivery sin DNI, > 50 artículos);
+  stop
+else (sí)
+  :PedidoFacade registra el pedido (estado REGISTRADO);
+endif
+:Seleccionar método de pago y comprobante;
+:Factory crea la pasarela y cobra;
+if (¿Pago aprobado?) then (no)
+  :Informar motivo (monto insuficiente, tope QR...);
+  if (¿Reintentar?) then (sí)
+    :Volver a cobrar;
+  else (no)
+    :Anular pedido;
+    stop
+  endif
+endif
+:Adapter emite boleta o factura en el sistema heredado;
+:Registrar pago y comprobante;
+:Estado = PAGADO → comanda visible en cocina;
+stop
+@enduml

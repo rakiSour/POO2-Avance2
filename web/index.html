@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bembos · Sistema de Gestión de Pedidos (MVC + Builder)</title>
+  <meta name="description" content="Demostración web del sistema de gestión de pedidos en Java Swing (MVC, Builder, Factory, Singleton, Adapter y Facade), ejecutado en el navegador con CheerpJ.">
+  <style>
+    :root {
+      --azul: #0b3b8c;
+      --naranja: #f28c00;
+      --fondo: #f6f7fb;
+      --texto: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 20px;
+      background: var(--azul);
+      color: #fff;
+    }
+    header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .02em; }
+    header p { margin: 2px 0 0; font-size: .8rem; color: #ffd7a1; }
+    header a {
+      color: #fff;
+      font-size: .85rem;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 6px;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+    header a:hover { background: rgba(255,255,255,.12); }
+    main { position: relative; flex: 1; min-height: 0; }
+    #app { position: absolute; inset: 0; }
+    #carga {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      text-align: center;
+      padding: 24px;
+      background: var(--fondo);
+      z-index: 2;
+    }
+    #carga[hidden] { display: none; }
+    .spinner {
+      width: 42px; height: 42px;
+      border: 4px solid #d6dcea;
+      border-top-color: var(--naranja);
+      border-radius: 50%;
+      animation: giro 0.9s linear infinite;
+    }
+    @keyframes giro { to { transform: rotate(360deg); } }
+    #carga strong { color: var(--azul); font-size: 1.05rem; }
+    #carga small { color: #5b6475; max-width: 460px; line-height: 1.45; }
+    #error { color: #c62828; max-width: 520px; }
+    footer {
+      padding: 6px 20px;
+      font-size: .75rem;
+      color: #5b6475;
+      background: #fff;
+      border-top: 1px solid #e3e7ef;
+    }
+    @media (max-width: 640px) {
+      header p { display: none; }
+    }
+  </style>
+  <!-- CheerpJ: maquina virtual Java en WebAssembly (licencia Community, uso personal) -->
+  <script src="https://cjrtnc.leaningtech.com/5.0/loader.js"></script>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>BEMBOS · Gestión de Pedidos</h1>
+      <p>Arquitectura MVC · Builder · Factory · Singleton · Adapter · Facade</p>
+    </div>
+    <a href="bembos-web.jar" download>Descargar JAR</a>
+  </header>
+
+  <main>
+    <div id="carga" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <strong>Iniciando la aplicación Java…</strong>
+      <small>La primera carga descarga la máquina virtual Java para el navegador y puede tardar
+        entre 10 y 40 segundos. Las siguientes visitas son más rápidas.</small>
+      <small id="error" hidden></small>
+    </div>
+    <div id="app"></div>
+  </main>
+
+  <footer>
+    Demostración en modo memoria: los pedidos se pierden al recargar la página. La versión de
+    escritorio usa PostgreSQL. Proyecto académico · POO II · USIL 2026.
+  </footer>
+
+  <script type="module">
+    const carga = document.getElementById("carga");
+    const error = document.getElementById("error");
+    try {
+      await cheerpjInit({ version: 17 });
+      cheerpjCreateDisplay(-1, -1, document.getElementById("app"));
+      // La aplicacion Swing queda abierta; se oculta el aviso al crear la ventana.
+      setTimeout(() => { carga.hidden = true; }, 4000);
+      await cheerpjRunJar("/app/bembos-web.jar", "--web");
+    } catch (e) {
+      error.textContent = "No se pudo iniciar la aplicación: " + e +
+        ". Pruebe con Chrome, Edge o Firefox actualizados.";
+      error.hidden = false;
+      console.error(e);
+    }
+  </script>
+</body>
+</html>

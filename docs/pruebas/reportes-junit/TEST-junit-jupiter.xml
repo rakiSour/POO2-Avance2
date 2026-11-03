@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Jupiter" tests="62" skipped="0" failures="0" errors="0" time="3.721" hostname="vm" timestamp="2026-11-03T15:05:31">
+<properties>
+<property name="file.encoding" value="UTF-8"/>
+<property name="file.separator" value="/"/>
+<property name="http.nonProxyHosts" value="localhost|127.0.0.1|::1|127.*|0.*|::|169.254.*|api.anthropic.com|api-staging.anthropic.com|api-pr-preview.anthropic.com|mcp-proxy.anthropic.com|mcp-proxy-staging.anthropic.com|registry.npmjs.org|jsr.io|npm.jsr.io|pypi.org|files.pythonhosted.org|index.crates.io|proxy.golang.org|host.docker.internal|10.*|172.16.*|172.17.*|172.18.*|172.19.*|172.20.*|172.21.*|172.22.*|172.23.*|172.24.*|172.25.*|172.26.*|172.27.*|172.28.*|172.29.*|172.30.*|172.31.*|192.168.*|100.64.0.0/10|*.svc.cluster.local|*.svc.cluster.local"/>
+<property name="https.proxyHost" value="127.0.0.1"/>
+<property name="https.proxyPort" value="40241"/>
+<property name="java.awt.headless" value="true"/>
+<property name="java.class.path" value="/usr/share/java/junit-platform-console-standalone.jar"/>
+<property name="java.class.version" value="69.0"/>
+<property name="java.home" value="/usr/lib/jvm/java-25-openjdk-amd64"/>
+<property name="java.io.tmpdir" value="/tmp"/>
+<property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+<property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+<property name="java.runtime.version" value="25.0.4.1+1-1-24.04.4-Ubuntu"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="25"/>
+<property name="java.vendor" value="Ubuntu"/>
+<property name="java.vendor.url" value="https://ubuntu.com/"/>
+<property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-25"/>
+<property name="java.version" value="25.0.4.1"/>
+<property name="java.version.date" value="2026-08-18"/>
+<property name="java.vm.compressedOopsMode" value="32-bit"/>
+<property name="java.vm.info" value="mixed mode, sharing"/>
+<property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="25"/>
+<property name="java.vm.vendor" value="Ubuntu"/>
+<property name="java.vm.version" value="25.0.4.1+1-1-24.04.4-Ubuntu"/>
+<property name="javax.net.ssl.trustStore" value="/etc/ssl/certs/java/cacerts"/>
+<property name="javax.net.ssl.trustStoreType" value="JKS"/>
+<property name="jdk.debug" value="release"/>
+<property name="jdk.http.auth.proxying.disabledSchemes" value=""/>
+<property name="jdk.http.auth.tunneling.disabledSchemes" value=""/>
+<property name="line.separator" value="
+"/>
+<property name="native.encoding" value="ANSI_X3.4-1968"/>
+<property name="os.arch" value="amd64"/>
+<property name="os.name" value="Linux"/>
+<property name="os.version" value="6.18.44-fc-v230"/>
+<property name="path.separator" value=":"/>
+<property name="stderr.encoding" value="ANSI_X3.4-1968"/>
+<property name="stdin.encoding" value="ANSI_X3.4-1968"/>
+<property name="stdout.encoding" value="UTF-8"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="/usr/lib/jvm/java-25-openjdk-amd64/lib"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+<property name="sun.java.command" value="/usr/share/java/junit-platform-console-standalone.jar execute -cp /tmp/out/main:/tmp/out/test:/usr/share/java/postgresql.jar --scan-classpath --details=tree --disable-banner --disable-ansi-colors --reports-dir=/tmp/junit-reports-1"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="ANSI_X3.4-1968"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="user.country" value="US"/>
+<property name="user.dir" value="/home/claude/proj/POO2-Avance2"/>
+<property name="user.home" value="/root"/>
+<property name="user.language" value="en"/>
+<property name="user.name" value="root"/>
+<property name="user.timezone" value="America/Lima"/>
+</properties>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[6]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#6]
+display-name: EN_PREPARACION -> ANULADO permitido=false
+]]></system-out>
+</testcase>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[5]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#5]
+display-name: LISTO -> ENTREGADO permitido=true
+]]></system-out>
+</testcase>
+<testcase name="registrar()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:registrar()]
+display-name: CP-30 registrarPedido asigna id y código correlativo
+]]></system-out>
+</testcase>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[4]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#4]
+display-name: EN_PREPARACION -> LISTO permitido=true
+]]></system-out>
+</testcase>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[3]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#3]
+display-name: PAGADO -> EN_PREPARACION permitido=true
+]]></system-out>
+</testcase>
+<testcase name="cantidadFueraDeRango(int)[2]" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[test-template:cantidadFueraDeRango(int)]/[test-template-invocation:#2]
+display-name: cantidad = -1
+]]></system-out>
+</testcase>
+<testcase name="persistenciaCompleta()" classname="org.usil.bembos.integracion.PostgresIntegracionTest" time="0.06">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.integracion.PostgresIntegracionTest]/[method:persistenciaCompleta()]
+display-name: CP-43 Persiste pedido, personalizaciones, pago, comprobante e historial
+]]></system-out>
+</testcase>
+<testcase name="cantidadFueraDeRango(int)[3]" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[test-template:cantidadFueraDeRango(int)]/[test-template-invocation:#3]
+display-name: cantidad = 21
+]]></system-out>
+</testcase>
+<testcase name="cantidadFueraDeRango(int)[4]" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[test-template:cantidadFueraDeRango(int)]/[test-template-invocation:#4]
+display-name: cantidad = 100
+]]></system-out>
+</testcase>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[7]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#7]
+display-name: ENTREGADO -> ANULADO permitido=false
+]]></system-out>
+</testcase>
+<testcase name="noPermiteQuitarAjeno()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:noPermiteQuitarAjeno()]
+display-name: CP-04 Rechaza quitar un ingrediente que no pertenece a la receta
+]]></system-out>
+</testcase>
+<testcase name="escenarioCompleto()" classname="org.usil.bembos.controller.PedidoControllerTest" time="0.006">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.controller.PedidoControllerTest]/[method:escenarioCompleto()]
+display-name: CP-39 Escenario de caja completo: personalizar, combo, confirmar, cobrar y cocinar
+]]></system-out>
+</testcase>
+<testcase name="pagoEfectivo()" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[method:pagoEfectivo()]
+display-name: CP-24 Efectivo calcula el vuelto y rechaza montos insuficientes
+]]></system-out>
+</testcase>
+<testcase name="cantidadFueraDeRango(int)[1]" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[test-template:cantidadFueraDeRango(int)]/[test-template-invocation:#1]
+display-name: cantidad = 0
+]]></system-out>
+</testcase>
+<testcase name="estresEnMemoria()" classname="org.usil.bembos.rendimiento.EstresConcurrenciaTest" time="0.122">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.rendimiento.EstresConcurrenciaTest]/[method:estresEnMemoria()]
+display-name: CP-45 100 pedidos concurrentes en memoria sin errores ni duplicados
+]]></system-out>
+</testcase>
+<testcase name="comboDuo()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:comboDuo()]
+display-name: CP-18 El Director agrupa unidades repetidas (Combo Dúo)
+]]></system-out>
+</testcase>
+<testcase name="resumen()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.009">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:resumen()]
+display-name: CP-36 Resumen del día: ventas, personalización y tiempo de atención
+]]></system-out>
+</testcase>
+<testcase name="adaptador()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:adaptador()]
+display-name: CP-37 Adapter traduce la trama del sistema heredado a un Comprobante
+]]></system-out>
+</testcase>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[2]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#2]
+display-name: REGISTRADO -> EN_PREPARACION permitido=false
+]]></system-out>
+</testcase>
+<testcase name="transiciones(EstadoPedido, EstadoPedido, boolean)[1]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.005">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:transiciones(org.usil.bembos.model.entidad.EstadoPedido, org.usil.bembos.model.entidad.EstadoPedido, boolean)]/[test-template-invocation:#1]
+display-name: REGISTRADO -> PAGADO permitido=true
+]]></system-out>
+</testcase>
+<testcase name="topeBilletera()" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[method:topeBilletera()]
+display-name: CP-25 Billetera digital respeta el tope de S/ 500
+]]></system-out>
+</testcase>
+<testcase name="simulacion()" classname="org.usil.bembos.rendimiento.SimulacionPersonalizacionTest" time="0.04">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.rendimiento.SimulacionPersonalizacionTest]/[method:simulacion()]
+display-name: CP-47 El Builder bloquea el 100 % de personalizaciones inválidas (vs. modelo sin Builder)
+]]></system-out>
+</testcase>
+<testcase name="productoSinPersonalizar()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:productoSinPersonalizar()]
+display-name: CP-01 Construye una hamburguesa sin personalizar con el precio base
+]]></system-out>
+</testcase>
+<testcase name="anulacion()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:anulacion()]
+display-name: CP-35 Solo se anulan pedidos que aún no entran a preparación
+]]></system-out>
+</testcase>
+<testcase name="comboInexistente()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:comboInexistente()]
+display-name: CP-19 El Director rechaza combos inexistentes
+]]></system-out>
+</testcase>
+<testcase name="postreSinAgrandado()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:postreSinAgrandado()]
+display-name: CP-11 Un postre no admite tamaño agrandado
+]]></system-out>
+</testcase>
+<testcase name="limiteDeAdicionales()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:limiteDeAdicionales()]
+display-name: CP-06 Limita el número de adicionales por producto
+]]></system-out>
+</testcase>
+<testcase name="personalizacionInvalidaNoSeAgrega()" classname="org.usil.bembos.controller.PedidoControllerTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.controller.PedidoControllerTest]/[method:personalizacionInvalidaNoSeAgrega()]
+display-name: CP-40 Una personalización inválida no llega al carrito
+]]></system-out>
+</testcase>
+<testcase name="contradiccion()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:contradiccion()]
+display-name: CP-08 Detecta la contradicción de quitar y agregar el mismo ingrediente
+]]></system-out>
+</testcase>
+<testcase name="personalizacionCompleta()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:personalizacionCompleta()]
+display-name: CP-02 Ensambla paso a paso: tamaño, retiro, adicionales y nota
+]]></system-out>
+</testcase>
+<testcase name="acumulaErrores()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:acumulaErrores()]
+display-name: CP-10 Reúne todos los errores en una sola excepción
+]]></system-out>
+</testcase>
+<testcase name="deliverySinCliente()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:deliverySinCliente()]
+display-name: CP-15 Delivery exige identificar al cliente
+]]></system-out>
+</testcase>
+<testcase name="singletonEntreHilos()" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.023">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[method:singletonEntreHilos()]
+display-name: CP-27 ConexionBD es Singleton incluso con 50 hilos concurrentes
+]]></system-out>
+</testcase>
+<testcase name="tipoConcreto()" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[method:tipoConcreto()]
+display-name: CP-29 Instancia directa: los tipos concretos se crean vía fábrica
+]]></system-out>
+</testcase>
+<testcase name="reutilizaConexiones()" classname="org.usil.bembos.integracion.PostgresIntegracionTest" time="0.199">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.integracion.PostgresIntegracionTest]/[method:reutilizaConexiones()]
+display-name: CP-44 El pool del Singleton reutiliza conexiones (no crea una por consulta)
+]]></system-out>
+</testcase>
+<testcase name="noPermiteQuitarObligatorio()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:noPermiteQuitarObligatorio()]
+display-name: CP-03 Rechaza quitar un ingrediente obligatorio de la receta
+]]></system-out>
+</testcase>
+<testcase name="tiempoDeRegistro()" classname="org.usil.bembos.integracion.PostgresIntegracionTest" time="0.643">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.integracion.PostgresIntegracionTest]/[method:tiempoDeRegistro()]
+display-name: CP-48 Tiempo de registro y cobro de un pedido personalizado en PostgreSQL (50 muestras)
+]]></system-out>
+</testcase>
+<testcase name="comboClasico()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:comboClasico()]
+display-name: CP-17 El Director construye el Combo Clásico con 15 % de descuento
+]]></system-out>
+</testcase>
+<testcase name="flujoCocina()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:flujoCocina()]
+display-name: CP-34 Flujo de cocina: Pagado → En preparación → Listo → Entregado
+]]></system-out>
+</testcase>
+<testcase name="pedidoVacio()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:pedidoVacio()]
+display-name: CP-14 No permite confirmar un pedido vacío
+]]></system-out>
+</testcase>
+<testcase name="facturaSinRuc()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:facturaSinRuc()]
+display-name: CP-32 La factura exige RUC de 11 dígitos (validación del sistema heredado)
+]]></system-out>
+</testcase>
+<testcase name="fabricaAbstracta()" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[method:fabricaAbstracta()]
+display-name: CP-26 DAOFactory (Abstract Factory) entrega la familia en memoria
+]]></system-out>
+</testcase>
+<testcase name="adicionalAgotado()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:adicionalAgotado()]
+display-name: CP-07 Rechaza adicionales sin stock
+]]></system-out>
+</testcase>
+<testcase name="flujoDePago()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:flujoDePago()]
+display-name: CP-31 procesarPago cobra, emite boleta (Adapter) y envía a cocina
+]]></system-out>
+</testcase>
+<testcase name="catalogo()" classname="org.usil.bembos.integracion.PostgresIntegracionTest" time="0.004">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.integracion.PostgresIntegracionTest]/[method:catalogo()]
+display-name: CP-42 El catálogo se carga desde la BD mediante ProductoFactory, con recetas
+]]></system-out>
+</testcase>
+<testcase name="estresEnPostgres()" classname="org.usil.bembos.rendimiento.EstresConcurrenciaTest" time="1.704">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.rendimiento.EstresConcurrenciaTest]/[method:estresEnPostgres()]
+display-name: CP-46 100 pedidos concurrentes contra PostgreSQL usando el pool del Singleton
+]]></system-out>
+</testcase>
+<testcase name="previsualizacion()" classname="org.usil.bembos.controller.PedidoControllerTest" time="0.002">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.controller.PedidoControllerTest]/[method:previsualizacion()]
+display-name: CP-41 Previsualización de precio en la vista de personalización
+]]></system-out>
+</testcase>
+<testcase name="filtroCatalogo()" classname="org.usil.bembos.controller.PedidoControllerTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.controller.PedidoControllerTest]/[method:filtroCatalogo()]
+display-name: CP-38 El controlador filtra el catálogo por familia
+]]></system-out>
+</testcase>
+<testcase name="dobleCobro()" classname="org.usil.bembos.model.servicio.PedidoFacadeTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.servicio.PedidoFacadeTest]/[method:dobleCobro()]
+display-name: CP-33 No se puede cobrar dos veces el mismo pedido
+]]></system-out>
+</testcase>
+<testcase name="fabricaDeProductos(TipoProducto)[3]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDeProductos(org.usil.bembos.model.entidad.TipoProducto)]/[test-template-invocation:#3]
+display-name: Bebidas
+]]></system-out>
+</testcase>
+<testcase name="fabricaDeProductos(TipoProducto)[2]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDeProductos(org.usil.bembos.model.entidad.TipoProducto)]/[test-template-invocation:#2]
+display-name: Complementos
+]]></system-out>
+</testcase>
+<testcase name="fabricaDeProductos(TipoProducto)[1]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDeProductos(org.usil.bembos.model.entidad.TipoProducto)]/[test-template-invocation:#1]
+display-name: Hamburguesas
+]]></system-out>
+</testcase>
+<testcase name="limiteArticulos()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0.003">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:limiteArticulos()]
+display-name: CP-16 Limita el pedido a 50 artículos
+]]></system-out>
+</testcase>
+<testcase name="fabricaDePasarelas(MetodoPago)[1]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0.014">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDePasarelas(org.usil.bembos.model.entidad.MetodoPago)]/[test-template-invocation:#1]
+display-name: Efectivo
+]]></system-out>
+</testcase>
+<testcase name="fabricaDePasarelas(MetodoPago)[2]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDePasarelas(org.usil.bembos.model.entidad.MetodoPago)]/[test-template-invocation:#2]
+display-name: Tarjeta débito/crédito
+]]></system-out>
+</testcase>
+<testcase name="quitarIndiceInvalido()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:quitarIndiceInvalido()]
+display-name: CP-20 Quitar un ítem con índice inválido se informa como regla de negocio
+]]></system-out>
+</testcase>
+<testcase name="fabricaDePasarelas(MetodoPago)[3]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDePasarelas(org.usil.bembos.model.entidad.MetodoPago)]/[test-template-invocation:#3]
+display-name: Billetera digital (Yape/Plin)
+]]></system-out>
+</testcase>
+<testcase name="fabricaDeProductos(TipoProducto)[4]" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[test-template:fabricaDeProductos(org.usil.bembos.model.entidad.TipoProducto)]/[test-template-invocation:#4]
+display-name: Postres
+]]></system-out>
+</testcase>
+<testcase name="inmutable()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:inmutable()]
+display-name: CP-12 El objeto construido es inmutable
+]]></system-out>
+</testcase>
+<testcase name="totalesConIgv()" classname="org.usil.bembos.model.builder.PedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.PedidoBuilderTest]/[method:totalesConIgv()]
+display-name: CP-13 Calcula total, base imponible e IGV (precios incluyen IGV)
+]]></system-out>
+</testcase>
+<testcase name="bebidaNoPersonalizable()" classname="org.usil.bembos.model.builder.ItemPedidoBuilderTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.builder.ItemPedidoBuilderTest]/[method:bebidaNoPersonalizable()]
+display-name: CP-05 Rechaza personalizar un producto no personalizable (bebida)
+]]></system-out>
+</testcase>
+<testcase name="tipoDesconocido()" classname="org.usil.bembos.model.PatronesCreacionalesTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:org.usil.bembos.model.PatronesCreacionalesTest]/[method:tipoDesconocido()]
+display-name: CP-22 ProductoFactory rechaza tipos desconocidos
+]]></system-out>
+</testcase>
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+</testsuite>

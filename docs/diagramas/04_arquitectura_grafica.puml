@@ -1,0 +1,27 @@
+@startuml
+!include 00_estilo.iuml
+title Arquitectura gráfica (despliegue en tienda)
+node "PC de caja / Kiosco\n(Windows 10/11)" as Caja {
+  artifact "POO2-Avance2.jar\n(Java 24 + Swing)" as App1
+  component "Vista Swing\n(Toma de pedido)" as V1
+}
+node "Pantalla de cocina\n(PC con monitor KDS)" as KDS {
+  artifact "POO2-Avance2.jar" as App2
+  component "CocinaPanel\n(refresco cada 5 s)" as V2
+}
+node "PC administrativa" as Adm {
+  component "ReportePanel" as V3
+  component "pgAdmin 4" as PGA
+}
+node "Servidor de base de datos" as Srv {
+  database "PostgreSQL 16\nbembos_db / esquema bembos" as PG
+}
+node "Sistema de facturación\nheredado (simulado)" as Leg
+App1 - V1
+App2 - V2
+V1 --> PG : JDBC 5432\n(pool Singleton)
+V2 --> PG : JDBC 5432
+V3 --> PG : JDBC 5432
+PGA --> PG : administración\ny consultas SQL
+App1 ..> Leg : trama TIPO|DOC|RAZÓN|TOTAL\n(Adapter)
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+!include 00_estilo.iuml
+title Diagrama de estados del pedido
+[*] --> REGISTRADO : PedidoBuilder.build()\n+ registrarPedido()
+REGISTRADO --> PAGADO : procesarPago()
+REGISTRADO --> ANULADO : anularPedido()
+PAGADO --> EN_PREPARACION : avanzarEstado()\n(cocina inicia)
+PAGADO --> ANULADO : anularPedido()
+EN_PREPARACION --> LISTO : avanzarEstado()
+LISTO --> ENTREGADO : avanzarEstado()\n(despacho)
+ENTREGADO --> [*]
+ANULADO --> [*]
+REGISTRADO : visible solo en caja
+PAGADO : visible en KDS (amarillo)
+EN_PREPARACION : KDS (azul)
+LISTO : KDS (verde)
+@enduml

@@ -1,0 +1,17 @@
+# 2026-11-03T15:05:27.597846350
+postgresql.peticiones=100
+postgresql.exitosas=100
+postgresql.errores=0
+postgresql.tiempo_total_ms=1531
+postgresql.latencia_promedio_ms=1080.0
+postgresql.latencia_p95_ms=1454
+postgresql.latencia_max_ms=1517
+postgresql.pedidos_por_segundo=65.3
+memoria.peticiones=100
+memoria.exitosas=100
+memoria.errores=0
+memoria.tiempo_total_ms=47
+memoria.latencia_promedio_ms=0.1
+memoria.latencia_p95_ms=0
+memoria.latencia_max_ms=3
+memoria.pedidos_por_segundo=2127.7

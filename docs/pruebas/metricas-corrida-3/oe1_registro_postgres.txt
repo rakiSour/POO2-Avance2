@@ -1,0 +1,4 @@
+# 2026-11-03T15:05:40.920965575
+muestras=50
+promedio_ms=9.04
+maximo_ms=20.64

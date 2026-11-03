@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "outputDirectory": "web",
+  "headers": [
+    {
+      "source": "/bembos-web.jar",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/java-archive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ]
+}

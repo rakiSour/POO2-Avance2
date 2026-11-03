@@ -1,0 +1,291 @@
+@startuml
+!include 00_estilo.iuml
+skinparam classFontSize 11
+skinparam classAttributeFontSize 10
+skinparam linetype ortho
+skinparam nodesep 25
+skinparam ranksep 40
+title Diagrama de clases del proyecto (org.usil.bembos)
+
+package "view" #DCE8FA {
+  class MainView {
+    - pestanas : JTabbedPane
+    + MainView(pc, pg, cc, rc, tipo)
+  }
+  class PedidoPanel {
+    - controller : PedidoController
+    - pagoController : PagoController
+    - personalizarSeleccionado()
+    - agregarCombo()
+    - confirmar()
+  }
+  class PersonalizacionDialog {
+    - receta : Map<Ingrediente,JCheckBox>
+    - extras : Map<Ingrediente,JSpinner>
+    - agregar()
+    + fueAgregado() : boolean
+  }
+  class PagoDialog {
+    - cobrar()
+    + getComprobante() : Comprobante
+  }
+  class CocinaPanel {
+    - timer : Timer
+    + refrescar()
+    - avanzar()
+    - anular()
+  }
+  class ReportePanel {
+    + refrescar()
+  }
+  class Estilo <<utility>>
+}
+
+package "controller" #FFF1D6 {
+  class PedidoController {
+    - pedidoEnCurso : PedidoBuilder
+    - director : PedidoDirector
+    + agregarProducto(p, cant, tam, quitar, extras, nota) : ItemPedido
+    + agregarCombo(nombre, tam) : List<ItemPedido>
+    + quitarItem(i)
+    + confirmarPedido(doc, nombre, canal, obs) : Pedido
+    + previsualizarPrecio(p, tam, extras) : BigDecimal
+  }
+  class PagoController {
+    + cobrar(pedido, metodo, recibido, tipo, doc, razon) : Comprobante
+  }
+  class CocinaController {
+    + comandasPendientes() : List<ResumenPedido>
+    + avanzar(id) : EstadoPedido
+    + anular(id)
+  }
+  class ReporteController {
+    + resumenDelDia() : ResumenVentas
+  }
+}
+
+package "model.builder" #E8F5E9 {
+  class ItemPedidoBuilder <<Builder>> {
+    + {static} MAX_EXTRAS = 6
+    + {static} MAX_CANTIDAD = 20
+    - producto : Producto
+    - cantidad : int
+    - tamano : Tamano
+    - quitados : Set<Ingrediente>
+    - extras : List<Ingrediente>
+    + cantidad(n) : ItemPedidoBuilder
+    + tamano(t) : ItemPedidoBuilder
+    + sin(ing) : ItemPedidoBuilder
+    + conExtra(ing) : ItemPedidoBuilder
+    + nota(txt) : ItemPedidoBuilder
+    + build() : ItemPedido
+    - validar() : List<String>
+  }
+  class PedidoBuilder <<Builder>> {
+    - cliente : Cliente
+    - canal : CanalVenta
+    - items : List<ItemPedido>
+    + agregarItem(i) : PedidoBuilder
+    + quitarItem(idx) : PedidoBuilder
+    + totalParcial() : BigDecimal
+    + build() : Pedido
+  }
+  class PedidoDirector <<Director>> {
+    + {static} COMBOS : Map<String,DefinicionCombo>
+    + construirCombo(nombre, tam, b) : List<ItemPedido>
+  }
+}
+
+package "model.entidad" #F1F8E9 {
+  abstract class Producto {
+    - id : int
+    - codigo : String
+    - nombre : String
+    - precioBase : BigDecimal
+    + {abstract} getTipo() : TipoProducto
+    + esPersonalizable() : boolean
+    + tamanosPermitidos() : List<Tamano>
+  }
+  class Hamburguesa {
+    - receta : Map<Ingrediente,Boolean>
+    + esObligatorio(ing) : boolean
+  }
+  class Bebida
+  class Complemento
+  class Postre
+  class Ingrediente <<record>> {
+    id : int
+    nombre : String
+    precioExtra : BigDecimal
+    disponible : boolean
+  }
+  class ItemPedido {
+    - cantidad : int
+    - tamano : Tamano
+    - ingredientesQuitados : List<Ingrediente>
+    - extras : List<Ingrediente>
+    - descuento : BigDecimal
+    + precioUnitario() : BigDecimal
+    + subtotal() : BigDecimal
+    + descripcionComanda() : String
+  }
+  class Pedido {
+    - id : Long
+    - codigo : String
+    - estado : EstadoPedido
+    + total() : BigDecimal
+    + baseImponible() : BigDecimal
+    + igv() : BigDecimal
+    + cambiarEstado(e)
+  }
+  class Cliente <<record>>
+  enum EstadoPedido {
+    REGISTRADO
+    PAGADO
+    EN_PREPARACION
+    LISTO
+    ENTREGADO
+    ANULADO
+    + puedePasarA(e) : boolean
+    + siguienteEnFlujo() : EstadoPedido
+  }
+  enum Tamano
+  enum CanalVenta
+  enum TipoProducto
+  enum MetodoPago
+  enum TipoComprobante
+  class Pago <<record>>
+  class Comprobante <<record>>
+  class ResumenPedido <<record>>
+  class ResumenVentas <<record>>
+}
+
+package "model.factory" #FFF8E1 {
+  class ProductoFactory <<Factory>> {
+    + {static} crear(tipo, id, cod, nom, desc, precio) : Producto
+  }
+}
+
+package "model.servicio" #FCE4EC {
+  class PedidoFacade <<Facade>> {
+    + {static} crear(daos) : PedidoFacade
+    + obtenerCatalogo() : List<Producto>
+    + registrarPedido(p) : Pedido
+    + procesarPago(p, metodo, recibido, tipo, doc, razon) : Comprobante
+    + pedidosEnCocina() : List<ResumenPedido>
+    + avanzarEstado(id) : EstadoPedido
+    + anularPedido(id)
+    + resumenDelDia() : ResumenVentas
+  }
+  interface PasarelaPago {
+    + cobrar(total, recibido) : ResultadoPago
+  }
+  class PasarelaPagoFactory <<Factory>> {
+    + {static} crear(metodo) : PasarelaPago
+  }
+  class Efectivo
+  class Tarjeta
+  class BilleteraDigital
+  interface ServicioFacturacion <<Target>> {
+    + emitir(p, tipo, doc, razon) : Comprobante
+  }
+  class FacturacionLegacyAdapter <<Adapter>>
+  class SistemaFacturacionLegacy <<Adaptee>> {
+    + procesarTrama(trama : String) : String
+  }
+}
+
+package "model.dao" #EDE7F6 {
+  abstract class DAOFactory <<AbstractFactory>> {
+    + {static} crear(tipo) : DAOFactory
+    + {abstract} getProductoDAO() : ProductoDAO
+    + {abstract} getPedidoDAO() : PedidoDAO
+    + {abstract} getPagoDAO() : PagoDAO
+  }
+  class JdbcDAOFactory
+  class MemoriaDAOFactory
+  interface ProductoDAO
+  interface PedidoDAO {
+    + guardar(p) : Pedido
+    + actualizarEstado(id, e)
+    + listarPorEstados(set) : List<ResumenPedido>
+  }
+  interface PagoDAO
+  class ProductoDaoJdbc
+  class PedidoDaoJdbc
+  class PagoDaoJdbc
+}
+
+package "config" #F3E5F5 {
+  class ConexionBD <<Singleton>> {
+    - {static} instancia : ConexionBD
+    - disponibles : BlockingQueue<Connection>
+    - ConexionBD(cfg)
+    + {static} getInstancia() : ConexionBD
+    + obtenerConexion() : Connection
+    + cerrarTodo()
+  }
+}
+
+MainView *-- PedidoPanel
+MainView *-- CocinaPanel
+MainView *-- ReportePanel
+PedidoPanel ..> PersonalizacionDialog
+PedidoPanel ..> PagoDialog
+PedidoPanel --> PedidoController
+PedidoPanel --> PagoController
+PersonalizacionDialog --> PedidoController
+PagoDialog --> PagoController
+CocinaPanel --> CocinaController
+ReportePanel --> ReporteController
+
+PedidoController --> PedidoFacade
+PedidoController --> PedidoBuilder
+PedidoController --> PedidoDirector
+PedidoController ..> ItemPedidoBuilder
+PagoController --> PedidoFacade
+CocinaController --> PedidoFacade
+ReporteController --> PedidoFacade
+
+PedidoDirector ..> ItemPedidoBuilder
+PedidoDirector ..> PedidoBuilder
+ItemPedidoBuilder ..> ItemPedido : <<crea>>
+PedidoBuilder ..> Pedido : <<crea>>
+PedidoBuilder o-- ItemPedido
+
+Producto <|-- Hamburguesa
+Producto <|-- Bebida
+Producto <|-- Complemento
+Producto <|-- Postre
+Hamburguesa o-- "1..*" Ingrediente : receta
+ItemPedido --> "1" Producto
+ItemPedido o-- "*" Ingrediente
+Pedido *-- "1..*" ItemPedido
+Pedido --> Cliente
+Pedido --> EstadoPedido
+ProductoFactory ..> Producto : <<crea>>
+
+PedidoFacade --> DAOFactory
+PedidoFacade --> ServicioFacturacion
+PedidoFacade ..> PasarelaPagoFactory
+PasarelaPagoFactory ..> PasarelaPago : <<crea>>
+PasarelaPago <|.. Efectivo
+PasarelaPago <|.. Tarjeta
+PasarelaPago <|.. BilleteraDigital
+ServicioFacturacion <|.. FacturacionLegacyAdapter
+FacturacionLegacyAdapter --> SistemaFacturacionLegacy
+FacturacionLegacyAdapter ..> Comprobante
+
+DAOFactory <|-- JdbcDAOFactory
+DAOFactory <|-- MemoriaDAOFactory
+JdbcDAOFactory *-- ProductoDaoJdbc
+JdbcDAOFactory *-- PedidoDaoJdbc
+JdbcDAOFactory *-- PagoDaoJdbc
+ProductoDAO <|.. ProductoDaoJdbc
+PedidoDAO <|.. PedidoDaoJdbc
+PagoDAO <|.. PagoDaoJdbc
+ProductoDaoJdbc ..> ProductoFactory
+ProductoDaoJdbc --> ConexionBD
+PedidoDaoJdbc --> ConexionBD
+PagoDaoJdbc --> ConexionBD
+@enduml

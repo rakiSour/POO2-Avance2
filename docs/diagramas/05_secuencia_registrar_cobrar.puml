@@ -1,0 +1,64 @@
+@startuml
+!include 00_estilo.iuml
+title Diagrama de secuencia (nivel de diseño): personalizar, registrar y cobrar un pedido
+autonumber
+actor Cajero
+participant ":PedidoPanel" as PP <<Vista>>
+participant ":PersonalizacionDialog" as PD <<Vista>>
+participant ":PedidoController" as PC <<Controlador>>
+participant ":ItemPedidoBuilder" as IB <<Builder>>
+participant ":PedidoBuilder" as PB <<Builder>>
+participant ":PedidoFacade" as F <<Facade>>
+participant ":PedidoDaoJdbc" as DAO <<DAO>>
+participant "ConexionBD" as CX <<Singleton>>
+participant "PasarelaPagoFactory" as PF <<Factory>>
+participant ":FacturacionLegacyAdapter" as AD <<Adapter>>
+participant ":SistemaFacturacionLegacy" as LG
+database PostgreSQL as DB
+
+Cajero -> PP : selecciona "Hamburguesa Royal"
+PP -> PD : new PersonalizacionDialog(producto)
+Cajero -> PD : quita Tomate, agrega Tocino, Agrandado
+PD -> PC : agregarProducto(prod, 1, AGRANDADO, [Tomate], {Tocino:1}, nota)
+PC -> IB : de(prod).cantidad().tamano().sin().conExtra().nota()
+PC -> IB : build()
+IB -> IB : validar() receta, obligatorios,\nstock, límites, contradicciones
+alt personalización inválida
+  IB --> PC : ReglaNegocioException(errores)
+  PC --> PD : excepción
+  PD --> Cajero : muestra lista de errores
+else válida
+  IB --> PC : item : ItemPedido (inmutable)
+  PC -> PB : agregarItem(item)
+  PD --> PP : fueAgregado() = true
+  PP -> PC : getItems() / getTotal()
+end
+Cajero -> PP : "Confirmar y cobrar"
+PP -> PC : confirmarPedido(doc, nombre, canal, obs)
+PC -> PB : cliente().canal().observacion().build()
+PB --> PC : pedido : Pedido
+PC -> F : registrarPedido(pedido)
+F -> DAO : guardar(pedido)
+DAO -> CX : getInstancia().obtenerConexion()
+CX --> DAO : conexión del pool
+DAO -> DB : INSERT pedido, detalle_pedido,\ndetalle_personalizacion, historial (transacción)
+DB --> DAO : id_pedido, codigo
+DAO --> F : pedido con id y código
+F --> PC : pedido
+PC --> PP : pedido
+PP -> PP : new PagoDialog(pedido)
+Cajero -> PP : método, monto, comprobante
+PP -> F : procesarPago(pedido, EFECTIVO, 100.00, BOLETA, dni, nombre)\n(vía PagoController)
+F -> PF : crear(EFECTIVO)
+PF --> F : pasarela : PasarelaPago
+F -> F : pasarela.cobrar(total, recibido)
+F -> AD : emitir(pedido, BOLETA, dni, nombre)
+AD -> LG : procesarTrama("03|dni|nombre|56.19")
+LG --> AD : "OK;B001;15"
+AD --> F : comprobante : Comprobante
+F -> DAO : PagoDAO.registrar(pago, comprobante)
+F -> DAO : actualizarEstado(id, PAGADO)
+DAO -> DB : UPDATE pedido / INSERT historial
+F --> PP : comprobante
+PP --> Cajero : "Pedido PED-000015 enviado a cocina"
+@enduml
